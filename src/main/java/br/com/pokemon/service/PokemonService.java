@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.pokemon.exception.EntidadeExistenteException;
 import br.com.pokemon.model.Pokemon;
 import br.com.pokemon.repositorio.PokemonRepositorio;
 
@@ -23,8 +24,14 @@ public class PokemonService {
 	
 	
 	public Pokemon salvar(Pokemon pokemon) {
+		
+		if(repo.existsByNum(pokemon.getNum())) {
+			throw new EntidadeExistenteException();
+		}
+		
 		return repo.save(pokemon);
 	}	
+	
 	
 	public Pokemon editar(Long id, Pokemon pokemon) {		
 		
@@ -44,8 +51,14 @@ public class PokemonService {
 	
 	public List<Pokemon> buscarPokemonsPage(int pageNum, int quantidade) {
 		
-		Pageable paging = PageRequest.of(pageNum, quantidade);
+		Pageable paging = PageRequest.of(pageNum - 1, quantidade);
         Page<Pokemon> pagedResult = repo.findAll(paging);
+
+		return pagedResult.toList();
+	}
+	
+	public List<Pokemon> buscarPokemonsTipo(String tipo) {
+
 
 		return pagedResult.toList();
 	}

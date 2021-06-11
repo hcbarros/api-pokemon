@@ -28,11 +28,11 @@ public class Pokemon {
 	@ElementCollection
 	private List<String> type;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "pokemon_pre_id")
     private List<PreEvolution> pre_evolution;
 	
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "pokemon_pos_id")
     private List<NextEvolution> next_evolution;
 

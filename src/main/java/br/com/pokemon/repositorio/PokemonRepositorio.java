@@ -12,4 +12,7 @@ import br.com.pokemon.model.Pokemon;
 public interface PokemonRepositorio extends JpaRepository<Pokemon, Long>, 
 				 							PagingAndSortingRepository<Pokemon, Long> {
 	
+	
+	boolean existsByNum(String num);
+	
 }

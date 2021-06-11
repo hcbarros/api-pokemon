@@ -24,43 +24,43 @@ import br.com.pokemon.service.PokemonService;
 
 @RestController
 @Validated
-@RequestMapping("/pokemon")
+@RequestMapping("/api")
 public class PokemonController  {
 
 	@Autowired
 	private PokemonService service;
 	
 	
-	@GetMapping(value = "{id}")
+	@GetMapping(value = "/pokemon/{id}")
 	public Pokemon buscarPokemon(@PathVariable Long id) {
 		return service.buscarPorId(id);		
 	}
 	
-	@GetMapping
+	@GetMapping(value = "/pokemons")
 	public List<Pokemon> buscarPokemons() {
 		return service.buscarPokemons();		
 	}
 	
-	@GetMapping(value = "/PAGINA/QUANTIDADE/{page}/{quantidade}")
+	@GetMapping(value = "/pokemons/{page}/{quantidade}")
 	public List<Pokemon> buscarPokemons(@PathVariable int page, 
 										@PathVariable int quantidade) {
 		return service.buscarPokemonsPage(page, quantidade);
 	}
 	
 
-	@PostMapping
+	@PostMapping(value = "/pokemon")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Pokemon salvar(@RequestBody @Valid Pokemon pokemon) {
 		return service.salvar(pokemon);
 	}
 	
-	@PutMapping(value = "{id}")
+	@PutMapping(value = "/pokemon/{id}")
 	public Pokemon editarEstudante(@PathVariable Long id, 
 								   @RequestBody @Valid Pokemon pokemon) {
 		return service.editar(id, pokemon);
 	}
 	
-	@DeleteMapping(value = "{id}")
+	@DeleteMapping(value = "/pokemon/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
 		service.delete(id);
