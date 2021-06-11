@@ -1,5 +1,11 @@
 package br.com.pokemon.config;
 
+import java.io.FileReader;
+import java.util.Iterator;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.boot.CommandLineRunner;
 
 import org.springframework.context.annotation.Bean;
@@ -20,7 +26,17 @@ public class DataLoader {
 		
 		return args -> {
 			
+			JSONParser jsonParser = new JSONParser();
+			JSONObject obj = (JSONObject) jsonParser.parse(new FileReader("pokedex.json"));
+			JSONArray jsonArray = (JSONArray) obj.get("pokemon");
 			
+			Iterator<JSONObject> iterator = jsonArray.iterator();
+			while(iterator.hasNext()) {
+				
+				obj = (JSONObject) iterator.next();
+				
+				
+			}
 			
 		};
 	}

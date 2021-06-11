@@ -36,7 +36,7 @@ public class PokemonController  {
 		return service.buscarPorId(id);		
 	}
 	
-	@GetMapping(value = "{id}")
+	@GetMapping
 	public List<Pokemon> buscarPokemons() {
 		return service.buscarPokemons();		
 	}
