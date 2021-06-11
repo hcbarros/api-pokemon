@@ -42,7 +42,7 @@ public class PokemonService {
 		p.setPre_evolution(pokemon.getPre_evolution());
 		p.setNext_evolution(pokemon.getNext_evolution());
 		
-		return salvar(p);
+		return repo.save(p);
 	}	
 	
 	public List<Pokemon> buscarPokemons() {
