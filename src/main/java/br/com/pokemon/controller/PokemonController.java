@@ -47,6 +47,11 @@ public class PokemonController  {
 		return service.buscarPokemonsPage(page, quantidade);
 	}
 	
+	@GetMapping(value = "/pokemons/{type}")
+	public List<Pokemon> buscarPokemonsTipo(@PathVariable String type) {
+		return service.buscarPokemonsTipo(type);
+	}
+	
 
 	@PostMapping(value = "/pokemon")
 	@ResponseStatus(HttpStatus.CREATED)

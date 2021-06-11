@@ -57,7 +57,10 @@ public class PokemonService {
 		return pagedResult.toList();
 	}
 	
+	public List<Pokemon> buscarPokemonsTipo(String tipo) {
 
+		return repo.listByType(tipo);
+	}
 	
 	public Pokemon buscarPorId(Long id) {
 		return repo.findById(id)
