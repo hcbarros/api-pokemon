@@ -21,7 +21,7 @@ public class NextEvolution {
 		
 	}
 
-	public NextEvolution(Long id, String num, String name) {
+	public NextEvolution(String num, String name) {
 		super();
 		this.id = id;
 		this.num = num;

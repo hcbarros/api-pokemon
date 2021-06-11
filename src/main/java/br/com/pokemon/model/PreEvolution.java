@@ -21,7 +21,7 @@ public class PreEvolution {
 		
 	}
 
-	public PreEvolution(Long id, String num, String name) {
+	public PreEvolution(String num, String name) {
 		super();
 		this.id = id;
 		this.num = num;

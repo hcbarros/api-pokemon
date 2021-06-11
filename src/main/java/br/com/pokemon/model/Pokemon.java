@@ -41,7 +41,7 @@ public class Pokemon {
 		
 	}
 	
-	public Pokemon(Long id, String num, String name, List<String> type, List<PreEvolution> pre_evolution,
+	public Pokemon(String num, String name, List<String> type, List<PreEvolution> pre_evolution,
 			List<NextEvolution> next_evolution) {
 		super();
 		this.id = id;
