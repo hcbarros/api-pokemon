@@ -33,9 +33,15 @@ public class PokemonService {
 	}	
 	
 	
-	public Pokemon editar(Long id, Pokemon pokemon) {		
+	public Pokemon editar(String num, Pokemon pokemon) {		
 		
-		Pokemon p = buscarPorId(id);
+		Pokemon p = buscarPorNum(num);
+		
+		if(!p.getNum().equals(pokemon.getNum())) {
+			if(repo.existsByNum(pokemon.getNum())) {
+				throw new EntidadeExistenteException();
+			}
+		}
 		p.setNum(pokemon.getNum());
 		p.setName(pokemon.getName());
 		p.setType(pokemon.getType());
@@ -44,6 +50,7 @@ public class PokemonService {
 		
 		return repo.save(p);
 	}	
+	
 	
 	public List<Pokemon> buscarPokemons() {
 		return repo.findAll();
@@ -62,13 +69,15 @@ public class PokemonService {
 		return repo.listByType(tipo);
 	}
 	
-	public Pokemon buscarPorId(Long id) {
-		return repo.findById(id)
-				   .orElseThrow(() -> new EntityNotFoundException());
+	public Pokemon buscarPorNum(String num) {
+		Pokemon p = repo.findByNum(num);
+		if(p == null) throw new EntityNotFoundException();
+		return p;
 	}
 
-	public void delete(Long id) {
-		repo.deleteById(id);
+	public void delete(String num) {
+		Pokemon p = buscarPorNum(num);
+		repo.deleteById(p.getId());
 	}
 	
 	

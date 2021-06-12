@@ -31,9 +31,9 @@ public class PokemonController  {
 	private PokemonService service;
 	
 	
-	@GetMapping(value = "/pokemon/{id}")
-	public Pokemon buscarPokemon(@PathVariable Long id) {
-		return service.buscarPorId(id);		
+	@GetMapping(value = "/pokemon/{num}")
+	public Pokemon buscarPokemon(@PathVariable String num) {
+		return service.buscarPorNum(num);		
 	}
 	
 	@GetMapping(value = "/pokemons")
@@ -59,16 +59,16 @@ public class PokemonController  {
 		return service.salvar(pokemon);
 	}
 	
-	@PutMapping(value = "/pokemon/{id}")
-	public Pokemon editarEstudante(@PathVariable Long id, 
+	@PutMapping(value = "/pokemon/{num}")
+	public Pokemon editarEstudante(@PathVariable String num, 
 								   @RequestBody @Valid Pokemon pokemon) {
-		return service.editar(id, pokemon);
+		return service.editar(num, pokemon);
 	}
 	
-	@DeleteMapping(value = "/pokemon/{id}")
+	@DeleteMapping(value = "/pokemon/{num}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void deletar(@PathVariable Long id) {
-		service.delete(id);
+	public void deletar(@PathVariable String num) {
+		service.delete(num);
 	}
 	
 }
